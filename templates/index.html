@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEIC to JPG Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>HEIC to JPG Converter</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".heic" required>
+            <button type="submit">Convert</button>
+        </form>
+        {% if converted_file %}
+        <div class="preview-section">
+            <p>Conversion successful! Preview your JPG file below:</p>
+            <img src="{{ url_for('converted_file', filename=converted_file) }}" alt="Converted Image" class="preview-image">
+            <a href="{{ url_for('download_file', filename=converted_file) }}" class="download-button">Download JPG</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
